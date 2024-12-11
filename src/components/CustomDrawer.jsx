@@ -3,11 +3,14 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import { NavLink } from 'react-router-dom';
 import { navCol } from '../constant/Colors';
+import { useMediaQuery } from 'react-responsive';
 
 export default function CustomDrawer({ open, setOpen }) {
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
+
+    const isSmallMob = useMediaQuery({ query: '(max-width: 568px)' }); // smaller mobile devices
 
     const DrawerList = (
         <Box
@@ -60,7 +63,7 @@ export default function CustomDrawer({ open, setOpen }) {
             onClose={toggleDrawer(false)}
             PaperProps={{
                 sx: {
-                    width: '55%',
+                    width: isSmallMob ? "65%" : "55%"
                 },
             }}
         >

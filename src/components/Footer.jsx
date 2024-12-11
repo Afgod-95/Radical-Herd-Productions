@@ -39,10 +39,10 @@ const Footer = () => {
                 viewport={{ once: false, amount: 0.5 }}
             >
                 <div>
-                    <h1
+                    <h1 className='big-txt'
                         style={{
                             color: subColor,
-                            fontSize: isSmallMob ? "50px" : isMobile ? "60px" : "300px",
+                            fontSize: isSmallMob ? "150px" : isMobile ? "200px" : "800px",
                             marginBottom: isMobile ? "10px" : "-2rem"
                         }}
                     >Let's Talk</h1>

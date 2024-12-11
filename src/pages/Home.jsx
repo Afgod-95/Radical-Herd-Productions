@@ -29,6 +29,7 @@ const variants = {
 
 const Home = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' }); // All mobile devices
+    const isSmallMob = useMediaQuery({ query: '(max-width: 568px)' }); // smaller mobile devices
     return (
         <div style={{ backgroundColor: navCol, height: '100vh' }}>
             {/* Section 1 */}
@@ -41,17 +42,16 @@ const Home = () => {
                     flexDirection: 'column',
                     gap: '1rem',
                     height: '90vh',
-                    lineHeight: '80px',
+                    lineHeight: "250px"
                 }}
                 className="home-cont"
 
             >
-                <motion.h1
+                <motion.h1 className='big-txt'
                     style={{
-                        fontSize: isMobile ? "50px" : '100px',
+                        fontSize: isMobile ? "100px" : '370px',
                         color: txtColor,
-                        fontFamily: 'sans-serif',
-                        lineHeight: isMobile ? "45px" : "",
+                        lineHeight: isSmallMob ? '100px': isMobile ? '250px' : '250px',
                         textTransform: 'uppercase',
                         textAlign: isMobile ? 'center' : ""
                     }}
@@ -61,9 +61,9 @@ const Home = () => {
                     viewport={{ once: false, amount: 0.5 }}
                 >
                     Lights, Camera, Sound{' '}
-                    <span style={{ fontSize: isMobile ? "30px" : '80px' }}>and</span>
+                    <span className = "big-txt" style={{ fontSize: isMobile ? "50px" : '250px' }}>and</span>
                 </motion.h1>
-                <motion.h1
+                <motion.h1 className='big-txt'
                     variants={{
                         hidden: { opacity: 0, y: 20 },
                         visible: {
@@ -76,13 +76,12 @@ const Home = () => {
                     whileInView="visible"
                     viewport={{ once: false, amount: 0.5 }}
                     style={{
-                        fontSize: isMobile ? "60px" : '100px',
+                        fontSize: isMobile ? "100px" : '450px',
                         lineHeight: isMobile ? "55px" : "",
-                        fontWeight: 'bold',
+                       
                         color: txtColor,
                         textTransform: 'uppercase',
-                        fontFamily: 'sans-serif',
-                        textAlign: isMobile ? 'center' : ""
+                        textAlign: "center"
                     }}
                 >
                     a whole action

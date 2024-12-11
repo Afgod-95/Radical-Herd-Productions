@@ -1,7 +1,7 @@
 @font-face {
     font-family: "Travel Sans Regular";
     src: url("/assets/travel-sans-font/TravelSansFont.otf") format("opentype");
-    font-weight: normal;
+    font-weight: regular;
     font-style: normal;
 }
 
@@ -12,8 +12,13 @@
     padding: 0;
     margin: 0;
     text-decoration: none;
-    font-family: "Travel Sans Regular", "Gilroy"
+    font-family: "Gilroy"
 
+}
+
+.big-txt {
+    font-family: "Travel Sans Regular";
+    font-weight: lighter;
 }
 
 .App {

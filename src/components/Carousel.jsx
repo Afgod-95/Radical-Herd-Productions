@@ -102,6 +102,7 @@ export default function SimpleSlider() {
               backgroundColor: "rgba(0, 0, 0, 0.7)",
               color: "white",
               fontSize: "1.5rem",
+              fontSize: "15px",
               borderRadius: "5px",
             }}
           >
