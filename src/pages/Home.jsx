@@ -49,9 +49,9 @@ const Home = () => {
             >
                 <motion.h1 className='big-txt'
                     style={{
-                        fontSize: isMobile ? "100px" : '370px',
+                        fontSize: isMobile ? "50px" : '110px',
                         color: txtColor,
-                        lineHeight: isSmallMob ? '100px': isMobile ? '250px' : '250px',
+                        lineHeight: isMobile ? "50px" : '20px',
                         textTransform: 'uppercase',
                         textAlign: isMobile ? 'center' : ""
                     }}
@@ -61,7 +61,7 @@ const Home = () => {
                     viewport={{ once: false, amount: 0.5 }}
                 >
                     Lights, Camera, Sound{' '}
-                    <span className = "big-txt" style={{ fontSize: isMobile ? "50px" : '250px' }}>and</span>
+                    <span className = "big-txt" style={{ fontSize: isMobile ? "30px" : '50px' }}>and</span>
                 </motion.h1>
                 <motion.h1 className='big-txt'
                     variants={{
@@ -76,9 +76,8 @@ const Home = () => {
                     whileInView="visible"
                     viewport={{ once: false, amount: 0.5 }}
                     style={{
-                        fontSize: isMobile ? "100px" : '450px',
-                        lineHeight: isMobile ? "55px" : "",
-                       
+                        fontSize: isMobile ? "50px" : '100px',
+                        lineHeight: isMobile ? "50px" : '20px',
                         color: txtColor,
                         textTransform: 'uppercase',
                         textAlign: "center"
@@ -118,15 +117,15 @@ const Home = () => {
                     viewport={{ once: false, amount: 0.5 }}
                 >
                      <VideoSection Video = {null} isMobile={isMobile}/>
-                    <h1 style={{ textAlign: 'center', color: subColor }}>Portfolio</h1>
+                    <h1 style={{ textAlign: 'center', color: subColor, fontFamily: "Roboto" }}>Portfolio</h1>
                     <Carousel  />
 
                     <div style={{ display: 'flex', flexDirection: isMobile ? "column" : "row", justifyContent: 'space-between', padding: isMobile ? ".5rem" : "2rem"}}>
-                        <h1 style={{ width: isMobile ? "100%" : '45%', textAlign: isMobile ? "center" : "", fontSize: isMobile ? "20px" : "", color: navCol, marginBottom: isMobile ? "10px" : "" }}>
+                        <h1 style={{ fontFamily: "Roboto" , width: isMobile ? "100%" : '45%', textAlign: isMobile ? "center" : "", fontSize: isMobile ? "20px" : "", color: navCol, marginBottom: isMobile ? "10px" : "" }}>
                             Digital Advertising in Ghana <span style={{ fontWeight: 'normal' }}>(A fast evolving parts)</span>
                         </h1>
                         <div style={{ width: isMobile ? "100%" : '50%' }}>
-                            <p style={{ color: '#fff', lineHeight: "30px" }}>
+                            <p style={{ color: '#fff', lineHeight: "30px", fontFamily: "Roboto" }}>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, expedita facilis! Rerum, mollitia similique, distinctio expedita repellat at quidem tenetur porro officiis provident cumque iste totam maxime deserunt asperiores voluptate.
                             </p>
                         </div>
@@ -161,7 +160,7 @@ const Home = () => {
                                 transition: { duration: 0.8, delay: 0.2 }
                             },
                         }}
-                            style={{ textAlign: 'center', color: subColor }}>Our Cast</motion.h1>
+                            style={{ textAlign: 'center', color: subColor, fontFamily: "Roboto" }}>Our Cast</motion.h1>
                         <img src={Client_Logos} alt="client-logos" />
                     </motion.div>
                 </div>

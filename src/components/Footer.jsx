@@ -42,9 +42,10 @@ const Footer = () => {
                     <h1 className='big-txt'
                         style={{
                             color: subColor,
-                            fontSize: isSmallMob ? "180px" : isMobile ? "220px" : "800px",
+                            fontSize: isSmallMob ? "30px" : isMobile ? "80px" : "100px",
                             marginBottom: isMobile ? "10px" : "-2rem",
-                            textAlign:  'center' 
+                            textAlign:  'center',
+                            fontFamily: "Roboto"  
                         }}
                     >Let's Talk</h1>
                     {/*---------------EMAIL AND PHONE-------------*/}
@@ -63,6 +64,7 @@ const Footer = () => {
                                     color: "#fff",
                                     marginBottom: ".5rem",
                                     fontSize: isMobile ? "14px" : "",
+                                    fontFamily: "Roboto" 
                                 }}
                             >Email:  
                                 <a 
@@ -88,7 +90,7 @@ const Footer = () => {
                                      / prince.baah-duodu@naaafrica.com
                                 </a>
                             </h3>
-                            <h3 style={{ color: "#fff", fontSize: isMobile ? "14px" : "" }}>
+                            <h3 style={{ color: "#fff", fontSize: isMobile ? "14px" : "", fontFamily: "Roboto"  }}>
                                 Call:
                                 <a 
                                     href="tel:+233302961016" 
@@ -118,7 +120,7 @@ const Footer = () => {
                         </div>
 
                         <div style={{ textTransform: "uppercase", color: "#fff" }}>
-                            <h3 style={{ color: "#fff", marginBottom: ".5rem", fontSize: isMobile ? "15px" : "" }}>Follow Radical Herd </h3>
+                            <h3 style={{ color: "#fff", marginBottom: ".5rem", fontSize: isMobile ? "15px" : "", fontFamily: "Roboto"  }}>Follow Radical Herd </h3>
                             <div style={{ display: "flex", gap: ".5rem", alignItems: "center" }}>
 
                                 <Link to="https://www.instagram.com/radicalherdproductions/?hl=en" target='blank' className='info' style={{ fontWeight: 'bold' }}>
@@ -134,7 +136,7 @@ const Footer = () => {
 
                 {/* ================COPYRIGHT==================== */}
                 <motion.div>
-                    <p style={{ color: subColor, textAlign: "center", fontSize: isMobile ? "14px" : "15px", }}>Radical Herd Productions. © All rights reserved.</p>
+                    <p style={{ color: subColor, textAlign: "center", fontSize: isMobile ? "14px" : "15px", fontFamily: "Roboto"  }}>Radical Herd Productions. © All rights reserved.</p>
                 </motion.div>
             </motion.div >
         </>

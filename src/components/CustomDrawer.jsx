@@ -39,19 +39,19 @@ export default function CustomDrawer({ open, setOpen }) {
                 }}
             >
                 <NavLink to="/" activeClassName="active" className="links">
-                    <p>Home</p>
+                    <p style={{fontFamily: "Roboto" }}>Home</p>
                 </NavLink>
 
                 <NavLink to="/about" activeClassName="active" className="links">
-                    <p>About</p>
+                    <p style={{fontFamily: "Roboto" }}>About</p>
                 </NavLink>
 
                 <NavLink to="/portfolio" className="links">
-                    <p>Portfolio</p>
+                    <p style={{fontFamily: "Roboto" }}>Portfolio</p>
                 </NavLink>
 
                 <NavLink to="/request-a-quote" className="links" id="quote">
-                    <p>Request a Quote</p>
+                    <p style={{fontFamily: "Roboto" }}>Request a Quote</p>
                 </NavLink>
             </div>
         </Box>
