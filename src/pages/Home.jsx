@@ -51,7 +51,7 @@ const Home = () => {
                     style={{
                         fontSize: isMobile ? "50px" : '110px',
                         color: txtColor,
-                        lineHeight: isMobile ? "50px" : '20px',
+                        lineHeight: isMobile ? "50px" : '130px',
                         textTransform: 'uppercase',
                         textAlign: isMobile ? 'center' : ""
                     }}

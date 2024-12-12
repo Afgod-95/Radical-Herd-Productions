@@ -42,8 +42,8 @@ const Footer = () => {
                     <h1 className='big-txt'
                         style={{
                             color: subColor,
-                            fontSize: isSmallMob ? "30px" : isMobile ? "80px" : "100px",
-                            marginBottom: isMobile ? "10px" : "-2rem",
+                            fontSize: isSmallMob ? "30px" : isMobile ? "80px" : "200px",
+                            marginBottom: isMobile ? "10px" : "2rem",
                             textAlign:  'center',
                             fontFamily: "Roboto"  
                         }}
