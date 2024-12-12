@@ -45,7 +45,7 @@ const ScrollTop = () => {
                         zIndex: 1000,
                         position: 'fixed',
                         bottom: '20px',
-                        right: '10px',
+                        right: '30px',
                         background: navCol,
                         width: '50px',
                         height: '50px',

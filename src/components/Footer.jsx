@@ -5,6 +5,9 @@ import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { subColor } from '../constant/Colors';
 import { useMediaQuery } from 'react-responsive';
+import { MdOutlineMail } from "react-icons/md";
+import { FaPhoneSquareAlt } from "react-icons/fa";
+
 
 const variants = {
     section3: {
@@ -44,8 +47,8 @@ const Footer = () => {
                             color: subColor,
                             fontSize: isSmallMob ? "30px" : isMobile ? "80px" : "200px",
                             marginBottom: isMobile ? "10px" : "2rem",
-                            textAlign:  'center',
-                            fontFamily: "Roboto"  
+                            textAlign: 'center',
+                            fontFamily: "Roboto"
                         }}
                     >Let's Talk</h1>
                     {/*---------------EMAIL AND PHONE-------------*/}
@@ -55,72 +58,74 @@ const Footer = () => {
                             flexDirection: isMobile ? 'column' : "",
                             justifyContent: 'space-between',
                             gap: isMobile ? "1rem" : "",
-                            alignContent: "center",
+                            alignItems: "flex-start",
                         }}
                     >
-                        <div style={{ textTransform: "uppercase", color: "#fff",}}>
-                            <h3
-                                style={{
-                                    color: "#fff",
-                                    marginBottom: ".5rem",
-                                    fontSize: isMobile ? "14px" : "",
-                                    fontFamily: "Roboto" 
-                                }}
-                            >Email:  
-                                <a 
-                                    href="mailto:info@naaafrica.com" 
-                                    className="info"
-                                    style={{
-                                        fontWeight: "bold",
-                                        color: "inherit", // Ensures the text inherits the color from the parent
-                                        textDecoration: "none", // Removes underline if you don't want it
-                                    }}
-                                >
-                                      info@naaafrica.com  
-                                </a>  
-                                <a 
-                                    href="mailto:prince.baah-duodu@naaafrica.com" 
-                                    className="info"
-                                    style={{
-                                        fontWeight: "bold",
-                                        color: "inherit", // Ensures the text inherits the color from the parent
-                                        textDecoration: "none", // Removes underline if you don't want it
-                                    }}
-                                >
-                                     / prince.baah-duodu@naaafrica.com
-                                </a>
-                            </h3>
-                            <h3 style={{ color: "#fff", fontSize: isMobile ? "14px" : "", fontFamily: "Roboto"  }}>
-                                Call:
-                                <a 
-                                    href="tel:+233302961016" 
-                                    className="info"
-                                    style={{
-                                        fontWeight: "bold",
-                                        color: "inherit", // Ensures the text inherits the color from the parent
-                                        textDecoration: "none", // Removes underline if you don't want it
-                                    }}
-                                >
-                                     +233 302 961 016 / 
-                                </a> 
-                                  
-                                <a 
-                                    href="tel:+233531014722" 
-                                    className="info"
-                                    style={{
-                                        fontWeight: "bold",
-                                        color: "inherit", // Ensures the text inherits the color from the parent
-                                        textDecoration: "none", // Removes underline if you don't want it
-                                    }}
-                                >
-                                     +233 531 014 722
-                                </a>  
-                            </h3>
+                        <div style={{ color: "#fff", display: "flex", flexDirection: "column", gap: "1.5rem"}}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "1rem", fontFamily: "Roboto" }}>
+                                <MdOutlineMail size={isMobile ? 20 : 30} className="info" />
+                                <div style={{ display: "flex", gap: ".2rem", flexDirection: "column" }}>
+                                    <a
+                                        href="mailto:info@naaafrica.com"
+                                        className="info"
+                                        style={{
+                                            fontWeight: "bold",
+                                            color: "inherit", // Ensures the text inherits the color from the parent
+                                            textDecoration: "none", // Removes underline if you don't want it
+                                        }}
+                                    >
 
+                                        info@naaafrica.com
+                                    </a>
+                                    <a
+                                        href="mailto:prince.baah-duodu@naaafrica.com"
+                                        className="info"
+                                        style={{
+                                            fontWeight: "bold",
+                                            color: "inherit", // Ensures the text inherits the color from the parent
+                                            textDecoration: "none", // Removes underline if you don't want it
+                                        }}
+                                    >
+                                        prince.baah-duodu@naaafrica.com
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                                <FaPhoneSquareAlt size={isMobile ? 20 : 30} className="info" />
+                                <div style={{ display: "flex", gap: ".2rem", flexDirection: "column" }}>
+                                    <a
+                                        href="tel:+233302961016"
+                                        className="info"
+                                        style={{
+                                            fontWeight: "bold",
+                                            color: "inherit", // Ensures the text inherits the color from the parent
+                                            textDecoration: "none", // Removes underline if you don't want it
+                                        }}
+                                    >
+                                        +233 302 961 016 
+                                    </a>
+
+                                    <a
+                                        href="tel:+233531014722"
+                                        className="info"
+                                        style={{
+                                            fontWeight: "bold",
+                                            color: "inherit", // Ensures the text inherits the color from the parent
+                                            textDecoration: "none", // Removes underline if you don't want it
+                                        }}
+                                    >
+                                        +233 531 014 722
+                                    </a>
+                                </div>
+
+                            </div>
                         </div>
 
-                        <div style={{ textTransform: "uppercase", color: "#fff" }}>
-                            <h3 style={{ color: "#fff", marginBottom: ".5rem", fontSize: isMobile ? "15px" : "", fontFamily: "Roboto"  }}>Follow Radical Herd </h3>
+                        <div style={{  color: "#fff" }}>
+                            <h3 style={{ color: "#fff", marginBottom: ".5rem", fontSize: isMobile ? "15px" : "", fontFamily: "Roboto" }}>Follow Radical Herd </h3>
                             <div style={{ display: "flex", gap: ".5rem", alignItems: "center" }}>
 
                                 <Link to="https://www.instagram.com/radicalherdproductions/?hl=en" target='blank' className='info' style={{ fontWeight: 'bold' }}>
@@ -136,7 +141,7 @@ const Footer = () => {
 
                 {/* ================COPYRIGHT==================== */}
                 <motion.div>
-                    <p style={{ color: subColor, textAlign: "center", fontSize: isMobile ? "14px" : "15px", fontFamily: "Roboto"  }}>Radical Herd Productions. © All rights reserved.</p>
+                    <p style={{ color: subColor, textAlign: "center", fontSize: isMobile ? "14px" : "15px", fontFamily: "Roboto" }}>Radical Herd Productions. © All rights reserved.</p>
                 </motion.div>
             </motion.div >
         </>
