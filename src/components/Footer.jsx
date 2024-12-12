@@ -42,8 +42,9 @@ const Footer = () => {
                     <h1 className='big-txt'
                         style={{
                             color: subColor,
-                            fontSize: isSmallMob ? "150px" : isMobile ? "200px" : "800px",
-                            marginBottom: isMobile ? "10px" : "-2rem"
+                            fontSize: isSmallMob ? "180px" : isMobile ? "220px" : "800px",
+                            marginBottom: isMobile ? "10px" : "-2rem",
+                            textAlign:  'center' 
                         }}
                     >Let's Talk</h1>
                     {/*---------------EMAIL AND PHONE-------------*/}
