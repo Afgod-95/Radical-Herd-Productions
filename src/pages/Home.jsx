@@ -6,7 +6,7 @@ import Client_Logos from '../assets/client_logos/client_logos.png'
 import Footer from '../components/Footer.jsx';
 import { useMediaQuery } from 'react-responsive';
 import { FaYoutube } from "react-icons/fa";
-import Video from "../assets/video/radical-herd.mp4"
+//import Video from "../assets/video/radical-herd.mp4"
 import VideoSection from '../components/VideoSection.jsx';
 
 
