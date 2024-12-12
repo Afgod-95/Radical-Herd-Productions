@@ -7,8 +7,6 @@ import { motion } from "framer-motion";
 import { Skeleton } from "@mui/material";
 import { navCol } from "../constant/Colors";
 
-
-
 export default function SimpleSlider() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -24,8 +22,7 @@ export default function SimpleSlider() {
 
   const extractVideoId = (url) => {
     const match = url.match(
-      /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^?&"'>]+)/
-    );
+      /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^?&"'>]+)/);
     return match ? match[1] : null;
   };
 
@@ -102,34 +99,30 @@ export default function SimpleSlider() {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              {loadingVideos[index] ? (
-                <Skeleton
-                  variant="rectangular"
-                  width={isMobile ? "90%" : 350}
-                  height={200}
-                  animation="wave"
-                  style={{ margin: "0 10px" }}
-                />
-              ) : (
-                <iframe
-                  width={isMobile ? "90%" : "350"}
-                  height="200"
-                  src={`${video.src}?mute=1&controls=0&autoplay=1&loop=1&modestbranding=1&rel=0&fs=0&iv_load_policy=3&playlist=${extractVideoId(
-                    video.src
-                  )}`}
-                  title={`Video ${index + 1}`}
-                  frameBorder="0"
-                  style={{
-                    margin: "0 10px",
-                    cursor: "pointer",
-                    border: "none",
-                  }}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  onLoad={() => handleVideoLoad(index)}
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe>
+
+              {loadingVideos[index] && (
+                <Skeleton animation="wave" variant="rect" width="100%" height="200" />
               )}
+              <iframe
+                width={isMobile ? "90%" : "350"}
+                height="200"
+                src={`${video.src}?mute=1&controls=0&autoplay=1&loop=1&modestbranding=1&rel=0&fs=0&iv_load_policy=3&playlist=${extractVideoId(
+                  video.src
+                )}`}
+                title={`Video ${index + 1}`}
+                frameBorder="0"
+                style={{
+                  margin: "0 10px",
+                  cursor: "pointer",
+                  border: "none",
+                }}
+                onLoad={() => handleVideoLoad(index)}
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+
+
+
               <motion.div
                 className="video-button"
                 initial={{ opacity: 0, y: "100%" }}
@@ -153,7 +146,7 @@ export default function SimpleSlider() {
                   cursor: "pointer",
                   pointerEvents: hoveredIndex === index ? "auto" : "none",
                 }}
-                onClick={() => videoSource(video.src)}
+                onClick={() => videoSource("https://www.youtube.com/watch?v=UVXtlOSQUCI&list=PLAI9cnLfFcwso55EXbPmxv06S8Dw4Snn5")}
               >
                 <FaYoutube size={50} color={navCol} />
                 <p style={{ margin: 0 }}>Watch all videos</p>
