@@ -51,7 +51,7 @@ export default function SimpleSlider() {
   const handleVideoLoad = (index) => {
     setLoadingVideos((prev) => {
       const updated = [...prev];
-      updated[index] = false;
+      updated[index] = true;
       return updated;
     });
   };
