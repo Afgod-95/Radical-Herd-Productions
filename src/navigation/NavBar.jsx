@@ -134,13 +134,17 @@ const NavBar = ({ children }) => {
                                 <p>Home</p>
                             </NavLink>
 
-                            <NavLink to="/about" activeClassName="active" className="links">
-                                <p>About</p>
-                            </NavLink>
+
 
                             <NavLink to="/portfolio" activeClassName="active" className="links">
                                 <p>Portfolio</p>
                             </NavLink>
+
+                            <NavLink to="/about" activeClassName="active" className="links">
+                                <p>About</p>
+                            </NavLink>
+
+                            
 
                             <NavLink to="/request-a-quote" activeClassName="active" className="links" id="quote">
                                 <p>Request a Quote</p>

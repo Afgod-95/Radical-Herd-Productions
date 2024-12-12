@@ -10,6 +10,7 @@ export default function CustomDrawer({ open, setOpen }) {
         setOpen(newOpen);
     };
 
+    
     const isSmallMob = useMediaQuery({ query: '(max-width: 568px)' }); // smaller mobile devices
 
     const DrawerList = (

@@ -100,12 +100,10 @@ const Home = () => {
                     overflow: 'hidden',
                 }}
             >
-                <VideoSection Video = { Video } isMobile={isMobile}/>
-
-
+               
                 {/* Section 3 */}
                 <motion.div
-                    id="#portfolio"
+                    id="portfolio"
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -119,6 +117,7 @@ const Home = () => {
                     whileInView="visible"
                     viewport={{ once: false, amount: 0.5 }}
                 >
+                     <VideoSection Video = {null} isMobile={isMobile}/>
                     <h1 style={{ textAlign: 'center', color: subColor }}>Portfolio</h1>
                     <Carousel  />
 

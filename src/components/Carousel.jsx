@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { Skeleton } from "@mui/material";
 import { navCol } from "../constant/Colors";
 
+
+
 export default function SimpleSlider() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -49,7 +51,7 @@ export default function SimpleSlider() {
   const handleVideoLoad = (index) => {
     setLoadingVideos((prev) => {
       const updated = [...prev];
-      updated[index] = true;
+      updated[index] = false;
       return updated;
     });
   };
