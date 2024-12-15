@@ -9,41 +9,15 @@ import { navCol } from "../constant/Colors";
 
 export default function SimpleSlider() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const isTabletOrLaptop = useMediaQuery({ query: "(min-width: 769px) and (max-width: 1440px)" });
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [isInView, setIsInView] = useState(false);
+  const [loadingVideos, setLoadingVideos] = useState(Array(videoData.length).fill(false));
   const sliderRef = useRef(null);
-  const [loadingVideos, setLoadingVideos] = useState(
-    Array(videoData.length).fill(false)
-  );
-
-  const videoSource = (video) => {
-    window.open(video, "_blank");
-  };
 
   const extractVideoId = (url) => {
-    const match = url.match(
-      /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^?&"'>]+)/);
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^?&"'>]+)/);
     return match ? match[1] : null;
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.5 }
-    );
-
-    if (sliderRef.current) {
-      observer.observe(sliderRef.current);
-    }
-
-    return () => {
-      if (sliderRef.current) {
-        observer.unobserve(sliderRef.current);
-      }
-    };
-  }, []);
 
   const handleVideoLoad = (index) => {
     setLoadingVideos((prev) => {
@@ -57,29 +31,20 @@ export default function SimpleSlider() {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToShow: isMobile ? 1 : isTabletOrLaptop ? 2 : 3,
+    slidesToScroll: 1,
     arrows: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToScroll: 1,
+          infinite: true,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -89,22 +54,25 @@ export default function SimpleSlider() {
   };
 
   return (
-    <div style={{ width: isMobile ? "90%" : "100%", margin: "auto" }}>
+    <div style={{ width: isMobile ? "95%" : "100%", margin: "auto", padding: "20px 0" }}>
       <div ref={sliderRef}>
         <Slider {...settings}>
           {videoData.map((video, index) => (
             <div
               key={index}
-              style={{ display: "inline-block", position: "relative" }}
+              style={{
+                padding: "10px", // Add padding to create space between slides
+                boxSizing: "border-box",
+                position: "relative",
+              }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-
-              {loadingVideos[index] && (
-                <Skeleton animation="wave" variant="rect" width="100%" height="200" />
+              {!loadingVideos[index] && (
+                <Skeleton animation="wave" variant="rectangular" width="100%" height="200" />
               )}
               <iframe
-                width={isMobile ? "90%" : "350"}
+                width="100%" // Ensure iframe takes full width of the container
                 height="200"
                 src={`${video.src}?mute=1&controls=0&autoplay=1&loop=1&modestbranding=1&rel=0&fs=0&iv_load_policy=3&playlist=${extractVideoId(
                   video.src
@@ -112,16 +80,12 @@ export default function SimpleSlider() {
                 title={`Video ${index + 1}`}
                 frameBorder="0"
                 style={{
-                  margin: "0 10px",
-                  cursor: "pointer",
                   border: "none",
+                  padding: "15px",
                 }}
                 onLoad={() => handleVideoLoad(index)}
-                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               ></iframe>
-
-
 
               <motion.div
                 className="video-button"
@@ -146,10 +110,10 @@ export default function SimpleSlider() {
                   cursor: "pointer",
                   pointerEvents: hoveredIndex === index ? "auto" : "none",
                 }}
-                onClick={() => videoSource("https://www.youtube.com/watch?v=UVXtlOSQUCI&list=PLAI9cnLfFcwso55EXbPmxv06S8Dw4Snn5")}
+                onClick={() => window.open(video.src, "_blank")}
               >
                 <FaYoutube size={50} color={navCol} />
-                <p style={{ margin: 0 }}>Watch all videos</p>
+                <p style={{ margin: 0 }}>Watch Video</p>
               </motion.div>
             </div>
           ))}

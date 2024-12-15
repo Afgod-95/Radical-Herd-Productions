@@ -17,7 +17,7 @@ const NavBar = ({ children }) => {
     });
 
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' }); // All mobile devices
-
+    const isTabletOrLaptop = useMediaQuery({ query: '(min-width: 769px) and (max-width: 1440px)' });
     const [isToggled, setIsToggled] = useState(false);
 
     const navigate = useNavigate();
@@ -56,7 +56,7 @@ const NavBar = ({ children }) => {
                     {/* ================LOGO=========================== */}
                     <div
                         onClick={() => {
-                          navigate('/')
+                            navigate('/')
                         }}
                         style={{
                             display: 'flex',
@@ -66,8 +66,8 @@ const NavBar = ({ children }) => {
                     >
                         <img src={Logo} alt="Radical Herd Logo"
                             style={{
-                                width: isMobile ? 40 : 100,
-                                height: isMobile ? 40 : 100,
+                                width: isMobile ? 50 : 100,
+                                height: isMobile ? 50 : 100,
                                 cursor: 'pointer'
                             }}
                         />
@@ -123,31 +123,31 @@ const NavBar = ({ children }) => {
                         <div style={{
                             display: 'flex',
                             justifyContent: 'right',
-                            gap: '3rem',
-                            width: "50%",
+                            gap: isTabletOrLaptop ? "1.8rem"  : '3rem',
+                            width: isTabletOrLaptop ? "80%" :  "50%",
                             alignItems: 'center',
                             color: "white",
                             textTransform: "uppercase",
                         }}>
                             {/* Mobile Menu */}
                             <NavLink to="/" activeClassName="active" className="links">
-                                <p style={{fontFamily: "Roboto" }}>Home</p>
+                                <p style={{ fontFamily: "Roboto" }}>Home</p>
                             </NavLink>
 
 
 
                             <NavLink to="/portfolio" activeClassName="active" className="links">
-                                <p style={{fontFamily: "Roboto" }}>Portfolio</p>
+                                <p style={{ fontFamily: "Roboto" }}>Portfolio</p>
                             </NavLink>
 
                             <NavLink to="/about" activeClassName="active" className="links">
-                                <p style={{fontFamily: "Roboto" }}>About</p>
+                                <p style={{ fontFamily: "Roboto" }}>About</p>
                             </NavLink>
 
-                            
+
 
                             <NavLink to="/request-a-quote" activeClassName="active" className="links" id="quote">
-                                <p style={{fontFamily: "Roboto" }}>Request a Quote</p>
+                                <p style={{ fontFamily: "Roboto" }}>Request a Quote</p>
                             </NavLink>
 
                         </div>

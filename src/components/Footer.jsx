@@ -31,6 +31,7 @@ const Footer = () => {
                     flexDirection: 'column',
                     alignContent: 'center',
                     gap: '2rem',
+                    height: '100%',
                     marginTop: "2rem",
                     width: isMobile ? "90%" : '80%',
                     paddingBottom: "3rem",

@@ -44,7 +44,7 @@ const ScrollTop = () => {
                         gap: '10px',
                         zIndex: 1000,
                         position: 'fixed',
-                        bottom: '20px',
+                        bottom: '30px',
                         right: '30px',
                         background: navCol,
                         width: '50px',
