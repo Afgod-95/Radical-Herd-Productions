@@ -53,16 +53,13 @@ const Home = () => {
                 <motion.h1
                     className='big-txt'
                     style={{
-                        fontSize: isMobile ? "50px" : isTabletOrLaptop ? "90px" : '110px', // Adjust font size
+                        fontSize: isMobile ? "40px" : isTabletOrLaptop ? "90px" : '110px',
                         color: txtColor,
                         lineHeight: isMobile ? "50px" : isTabletOrLaptop ? "100px" : '130px',
                         textTransform: 'uppercase',
                         textAlign: "center",
                     }}
-                    variants={variants.section1}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, amount: 0.8 }} // Adjust `amount` for better visibility
+                   
                 >
                     Lights, Camera, Sound{' '}
                     <span className="big-txt" style={{ fontSize: isMobile ? "30px" : '50px' }}>and</span>

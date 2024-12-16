@@ -28,7 +28,7 @@ const NavBar = ({ children }) => {
     };
 
     return (
-        <div>
+        <div style={{overflowX: "hidden"}}>
             <nav
                 style={{
                     backgroundColor: navCol,
