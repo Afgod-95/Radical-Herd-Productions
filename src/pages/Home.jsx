@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+
 import { motion } from 'framer-motion';
-import { navCol, txtColor, bgColor, subColor } from '../constant/Colors.jsx';
+import { navCol, txtColor, bgColor, subColor } from '../../utils/constant/Colors.jsx';
 import Carousel from '../components/Carousel.jsx';
 import Client_Logos from '../assets/client_logos/client_logos.png'
 import Footer from '../components/Footer.jsx';
 import { useMediaQuery } from 'react-responsive';
-import { FaYoutube } from "react-icons/fa";
 //import Video from "../assets/video/radical-herd.mp4"
 import VideoSection from '../components/VideoSection.jsx';
 
@@ -35,7 +34,8 @@ const Home = () => {
 
     return (
         <div style={{ backgroundColor: navCol, }}>
-            <motion.div
+            <motion.div 
+                id='home'
                 style={{
                     width: isMobile ? "100%" : '80%',
                     marginLeft: "auto",
@@ -117,14 +117,18 @@ const Home = () => {
                     variants={variants.section3}
                     initial="hidden"
                     whileInView="visible"
+                    
                     viewport={{ once: false, amount: 0.5 }}
                 >
-                    <VideoSection Video={null} isMobile={isMobile} />
-                    <h1 style={{ textAlign: 'center', color: subColor, fontFamily: "Roboto" }}>Portfolio</h1>
+                    <VideoSection Video={'https://www.shutterstock.com/shutterstock/videos/3488356525/preview/stock-footage-medium-shot-of-young-black-team-of-colleagues-coworking-on-creative-project-in-green-office.webm'} isMobile={isMobile} />
+                    
+                    <div>
+                        <h1 style={{ textAlign: 'center', color: subColor, fontFamily: "Roboto" }}>Portfolio</h1>
+                    
                     <Carousel />
 
-                    <div style={{ display: 'flex', flexDirection: isMobile ? "column" : "row", justifyContent: 'space-between', padding: isMobile ? ".5rem" : "2rem" }}>
-                        <h1 style={{ fontFamily: "Roboto", width: isMobile ? "100%" : '45%', textAlign: isMobile ? "center" : "", fontSize: isMobile ? "20px" : "", color: navCol, marginBottom: isMobile ? "10px" : "" }}>
+                    <div style={{ display: 'flex', flexDirection: isMobile ? "column" : "row", justifyContent: 'space-between', padding: isMobile ? ".5rem" : "2rem", marginTop: isMobile ? 20 : 10 }}>
+                        <h1 style={{ fontFamily: "Roboto", width: isMobile ? "100%" : '45%', textAlign: isMobile ? "left" : "", fontSize: isMobile ? "20px" : "", color: navCol, marginBottom: isMobile ? "10px" : "" }}>
                             Digital Advertising in Ghana <span style={{ fontWeight: 'normal' }}>(A fast evolving parts)</span>
                         </h1>
                         <div style={{ width: isMobile ? "100%" : '50%' }}>
@@ -133,13 +137,15 @@ const Home = () => {
                             </p>
                         </div>
                     </div>
+                    </div>
+                    
                 </motion.div>
 
 
                 {/* Section 4 */}
                 <div style={{ width: "100%", backgroundColor: "#fff" }}>
                     <motion.div
-                        id="#our-cast"
+                        id="about"
                         style={{
                             display: 'flex',
                             alignContent: 'center',

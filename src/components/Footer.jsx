@@ -1,9 +1,9 @@
-import React from 'react'
+
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom';
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
-import { subColor } from '../constant/Colors';
+import { subColor } from '../../utils/constant/Colors';
 import { useMediaQuery } from 'react-responsive';
 import { MdOutlineMail } from "react-icons/md";
 import { FaPhoneSquareAlt } from "react-icons/fa";
@@ -22,10 +22,12 @@ const Footer = () => {
 
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' }); // All mobile devices
     const isSmallMob = useMediaQuery({ query: '(max-width: 568px)' }); // smaller mobile devices
+    const date = new Date()
+
     return (
         <>
             < motion.div
-                id="#portfolio"
+                id="request-a-quote"
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -51,7 +53,7 @@ const Footer = () => {
                             textAlign: 'center',
                             fontFamily: "Roboto"
                         }}
-                    >Let's Talk</h1>
+                    >Let&apos;s Talk</h1>
                     {/*---------------EMAIL AND PHONE-------------*/}
                     <div
                         style={{
@@ -142,7 +144,7 @@ const Footer = () => {
 
                 {/* ================COPYRIGHT==================== */}
                 <motion.div>
-                    <p style={{ color: subColor, textAlign: "center", fontSize: isMobile ? "14px" : "15px", fontFamily: "Roboto" }}>Radical Herd Productions. © All rights reserved.</p>
+                    <p style={{ color: subColor, textAlign: "center", fontSize: isMobile ? "14px" : "15px", fontFamily: "Roboto" }}> © {date.getFullYear()} Radical Herd Productions. All rights reserved.</p>
                 </motion.div>
             </motion.div >
         </>

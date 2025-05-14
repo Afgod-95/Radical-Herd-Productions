@@ -1,16 +1,49 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import { NavLink } from 'react-router-dom';
-import { navCol } from '../constant/Colors';
+import { navCol } from '../../utils/constant/Colors';
 import { useMediaQuery } from 'react-responsive';
 
 export default function CustomDrawer({ open, setOpen }) {
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
+    const [activeSection, setActiveSection] = useState('');
 
-    
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const sectionIds = ['home', 'portfolio', 'about', 'request-a-quote'];
+
+            const handleScroll = () => {
+                const scrollPosition = window.scrollY + 150;
+                for (let id of sectionIds) {
+                    const section = document.getElementById(id);
+                    if (section) {
+                        const offsetTop = section.offsetTop;
+                        const offsetHeight = section.offsetHeight;
+                        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                            setActiveSection(id);
+                            break;
+                        }
+                    }
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+        }
+    }, []);
+
+    const scrollToID = (id) => {
+        if (typeof window !== 'undefined') {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
+
+
     const isSmallMob = useMediaQuery({ query: '(max-width: 568px)' }); // smaller mobile devices
 
     const DrawerList = (
@@ -34,25 +67,20 @@ export default function CustomDrawer({ open, setOpen }) {
                     alignItems: 'flex-start',
                     padding: '20px',
                     marginTop: "10%",
-                   
+
 
                 }}
             >
-                <NavLink to="/" activeClassName="active" className="links">
-                    <p style={{fontFamily: "Roboto" }}>Home</p>
-                </NavLink>
-
-                <NavLink to="/about" activeClassName="active" className="links">
-                    <p style={{fontFamily: "Roboto" }}>About</p>
-                </NavLink>
-
-                <NavLink to="/portfolio" className="links">
-                    <p style={{fontFamily: "Roboto" }}>Portfolio</p>
-                </NavLink>
-
-                <NavLink to="/request-a-quote" className="links" id="quote">
-                    <p style={{fontFamily: "Roboto" }}>Request a Quote</p>
-                </NavLink>
+                {['home', 'portfolio', 'about', 'request-a-quote'].map((id) => (
+                    <a
+                        key={id}
+                        href={`#${id}`}
+                        className={`links ${activeSection === id ? 'active-link' : ''}`}
+                        onClick={() => scrollToID(id)}
+                    >
+                        <p style={{ fontFamily: 'Roboto' }}>{id.replace(/-/g, ' ').toUpperCase()}</p>
+                    </a>
+                ))}
             </div>
         </Box>
     );

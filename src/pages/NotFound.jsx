@@ -1,7 +1,7 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { navCol } from '../constant/Colors';
+import { navCol } from '../../utils/constant/Colors';
 
 const NotFound = () => {
   const styles = {
@@ -101,7 +101,7 @@ const NotFound = () => {
           }}
           style={{ ...styles.message, ...responsiveStyles.message }}
         >
-          Check whether there's a typo.
+          Check whether there&apos;s a typo.
         </motion.p>
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}

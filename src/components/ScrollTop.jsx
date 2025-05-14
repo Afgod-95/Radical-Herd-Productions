@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaArrowUp } from "react-icons/fa6";
-import { navCol } from '../constant/Colors';
+import { navCol } from '../../utils/constant/Colors';
 
 const ScrollTop = () => {
     const [isVisible, setIsVisible] = useState(false)

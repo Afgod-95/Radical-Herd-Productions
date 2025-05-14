@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaYoutube } from "react-icons/fa";
-import { Skeleton } from '@mui/material'; // Import Skeleton component
-import { navCol } from '../constant/Colors';
+import { Skeleton } from '@mui/material';
+import { navCol } from '../../utils/constant/Colors';
 
 const VideoSection = ({ bgColor, Video, isMobile }) => {
-    const [isHovered, setIsHovered] = useState(false); // State to track hover
+    const [isHovered, setIsHovered] = useState(false);
 
     const handleVideoClick = () => {
         if (Video) {
@@ -17,33 +17,16 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
         if (Video) {
             const video = document.querySelector('video');
             if (video) {
-                video.oncanplaythrough = () => {
-                    console.log("Video loaded and playing");
-                };
-                video.onerror = () => {
-                    console.error("Error loading or playing video");
-                };
-                video.onended = () => {
-                    console.log("Video ended");
-                };
-                video.onpause = () => {
-                    console.log("Video paused");
-                };
-                video.onplay = () => {
-                    console.log("Video started playing");
-                };
-                video.onseeked = () => {
-                    console.log("Video seeked");
-                };
-                video.ontimeupdate = () => {
-                    console.log("Video time updated");
-                };
-                video.onvolumechange = () => {
-                    console.log("Video volume changed");
-                };
-                video.onwaiting = () => {
-                    console.log("Video waiting for data");
-                };
+                video.oncanplaythrough = () => console.log("Video loaded and playing");
+                video.onerror = () => console.error("Error loading or playing video");
+                video.onended = () => console.log("Video ended");
+                video.onpause = () => console.log("Video paused");
+                video.onplay = () => console.log("Video started playing");
+                video.onseeked = () => console.log("Video seeked");
+                video.ontimeupdate = () => console.log("Video time updated");
+                video.onvolumechange = () => console.log("Video volume changed");
+                video.onwaiting = () => console.log("Video waiting for data");
+
                 video.load();
                 video.play();
             }
@@ -65,7 +48,7 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
             <motion.div
                 className='video-container'
                 style={{
-                    width: isMobile ? "100%" : '80%',
+                    width: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '2rem',
@@ -74,6 +57,7 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
                     justifyContent: 'center',
                     overflow: 'hidden',
                     position: 'relative',
+                    minHeight: isMobile ? '200px' : '300px', // Ensures skeleton has space
                 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -88,6 +72,9 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
                         controls={false}
                         style={{
                             objectFit: "cover",
+                            width: '100%',
+                            height: isMobile ? '100%' : '500px',
+                            borderRadius: '1rem'
                         }}
                     >
                         <source src={Video} type="video/mp4" />
@@ -95,17 +82,16 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
                     </video>
                 ) : (
                     <Skeleton 
-                        variant="rectangular" 
-                        animation="wave" 
+                        variant="rectangular"
+                        animation="wave"
                         style={{
                             width: '100%',
-                            height: '300px', // Adjust height based on your design
+                            height: isMobile ? '200px' : '300px',
                             borderRadius: '1rem',
-                        }} 
+                        }}
                     />
                 )}
 
-                {/* Overlay with "Click to watch video" */}
                 {Video && (
                     <motion.div
                         className='video-button'
@@ -115,10 +101,7 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
                             y: isHovered ? '0%' : '100%',
                         }}
                         exit={{ opacity: 0, y: '-100%' }}
-                        transition={{
-                            type: 'spring',
-                            stiffness: 100,
-                        }}
+                        transition={{ type: 'spring', stiffness: 100 }}
                         style={{
                             position: 'absolute',
                             bottom: 0,
@@ -131,6 +114,7 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
                             borderRadius: '5px',
                             zIndex: 10,
                             height: '100%',
+                            width: '100%',
                             backgroundColor: 'rgba(0, 0, 0, 0.5)',
                             color: 'white',
                             textAlign: 'center',

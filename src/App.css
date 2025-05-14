@@ -50,6 +50,7 @@ p {
     color: #ffffff;
     font-family: "Gilroy";
     font-weight: bold;
+    cursor: pointer;
 }
 
 .active {
@@ -61,9 +62,14 @@ p {
 
 .links:hover {
     color: #b3b3b3;
+    transition: all 0.5 ease;
 }
 
-#quote {
+.active-link {
+    color: #b3b3b3;
+}
+
+.links:last-child {
     background-color: #ffffff;
     height: 35px;
     display: flex;
@@ -74,6 +80,7 @@ p {
     padding-Right: 20px;
     border-radius: 5px;
 }
+
 
 
 
@@ -88,11 +95,32 @@ p {
     transition: color 0.5s;
 }
 
-
-/* Active dot style */
-.slick-dots li.slick-active {
-    background: #D72328;
-    width: 15px;
-    height: 3px;
-    border-radius: 10px;
+/* Position arrows further outside */
+.slick-prev,
+.slick-next {
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
 }
+
+.slick-prev {
+  left: -45px;
+}
+
+.slick-next {
+  right: -45px;
+}
+
+/* Optional: Hide arrows on mobile */
+@media (max-width: 768px) {
+  .slick-prev,
+  .slick-next {
+    display: none !important;
+  }
+}
+
+
