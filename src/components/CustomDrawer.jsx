@@ -3,6 +3,9 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import { navCol } from '../../utils/constant/Colors';
 import { useMediaQuery } from 'react-responsive';
+import PropTypes from 'prop-types'
+
+
 
 export default function CustomDrawer({ open, setOpen }) {
     const toggleDrawer = (newOpen) => () => {
@@ -78,7 +81,7 @@ export default function CustomDrawer({ open, setOpen }) {
                         className={`links ${activeSection === id ? 'active-link' : ''}`}
                         onClick={() => scrollToID(id)}
                     >
-                        <p style={{ fontFamily: 'Roboto' }}>{id.replace(/-/g, ' ').toUpperCase()}</p>
+                        <p style={{ fontFamily: 'Roboto' }}>{id.replace(/-/g, ' ').toUpperCase}</p>
                     </a>
                 ))}
             </div>
@@ -100,3 +103,8 @@ export default function CustomDrawer({ open, setOpen }) {
         </Drawer>
     );
 }
+
+CustomDrawer.propTypes = {
+    open: PropTypes.bool.isRequired,
+    setOpen: PropTypes.func.isRequired
+};

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { FaYoutube } from "react-icons/fa";
 import { Skeleton } from '@mui/material';
@@ -133,4 +134,11 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
     );
 };
 
+VideoSection.propTypes = {
+    bgColor: PropTypes.string.isRequired,
+    Video: PropTypes.string,
+    isMobile: PropTypes.bool.isRequired,
+};
+
 export default VideoSection;
+
