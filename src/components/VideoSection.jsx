@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { FaYoutube } from "react-icons/fa";
-import { Skeleton } from '@mui/material';
 import { navCol } from '../../utils/constant/Colors';
+import CustomSkeleton from './CustomSkeleton';
 
 const VideoSection = ({ bgColor, Video, isMobile }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -82,15 +82,7 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
                         Your browser does not support the video tag.
                     </video>
                 ) : (
-                    <Skeleton 
-                        variant="rectangular"
-                        animation="wave"
-                        style={{
-                            width: '100%',
-                            height: isMobile ? '200px' : '300px',
-                            borderRadius: '1rem',
-                        }}
-                    />
+                   <CustomSkeleton height = {500} />
                 )}
 
                 {Video && (

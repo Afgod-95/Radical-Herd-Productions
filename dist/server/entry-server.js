@@ -8,10 +8,10 @@ import Box from "@mui/material/Box/index.js";
 import Drawer from "@mui/material/Drawer/index.js";
 import pkg, { Link, useLocation, Routes, Route } from "react-router-dom";
 import Slider from "react-slick";
-import { Skeleton, Typography } from "@mui/material";
 import { FaPhoneSquareAlt, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaLinkedin, FaArrowUp } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
+import { Typography } from "@mui/material";
 const Logo = "/assets/Radical_Logo-FDvDmsXj.png";
 const navCol = "#D72328";
 const bgColor = "#151516";
@@ -105,6 +105,10 @@ function CustomDrawer({ open, setOpen }) {
     }
   );
 }
+CustomDrawer.propTypes = {
+  open: PropTypes.boolean,
+  setOpen: PropTypes.boolean
+};
 const NavBar = ({ children }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isTabletOrLaptop = useMediaQuery({ query: "(min-width: 769px) and (max-width: 1440px)" });
@@ -342,6 +346,47 @@ const videoData = [
     url: "https://www.youtube.com/MUi-X8kllLY"
   }
 ];
+const CustomSkeleton = ({ height }) => {
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      style: {
+        width: "100%",
+        height: height | "200px",
+        backgroundColor: "#0000",
+        position: "relative",
+        overflow: "hidden",
+        marginBottom: "10px",
+        borderRadius: "20px"
+      },
+      children: /* @__PURE__ */ jsx(
+        "div",
+        {
+          style: {
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundImage: "linear-gradient(90deg, transparent, rgba(47, 46, 46, 0.4), transparent)",
+            animation: "wave 1.5s infinite"
+          }
+        }
+      )
+    }
+  );
+};
+CustomSkeleton.propTypes = {
+  height: PropTypes.number
+};
+({
+  className: PropTypes.string,
+  onClick: PropTypes.func
+});
+({
+  className: PropTypes.string,
+  onClick: PropTypes.func
+});
 function SimpleSlider() {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isTabletOrLaptop = useMediaQuery({ query: "(min-width: 769px) and (max-width: 1440px)" });
@@ -359,31 +404,36 @@ function SimpleSlider() {
     });
   };
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     centerPadding: true,
     draggable: true,
     swipe: true,
-    lazyLoad: "ondemand",
     speed: 500,
     slidesToShow: isMobile ? 1 : isTabletOrLaptop ? 2 : 3,
     slidesToScroll: 1,
     arrows: true,
+    dotsClass: "slick-dots custom-dots",
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
         }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2
         }
       },
@@ -396,14 +446,52 @@ function SimpleSlider() {
       }
     ]
   };
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = `
+      .custom-dots li button:before {
+        color: #007bff !important;
+        font-size: 10px;
+      }
+      
+      .custom-dots li.slick-active button:before {
+        color: #0056b3 !important;
+      }
+      
+      @media (max-width: 768px) {
+        .slick-prev, .slick-next {
+          display: block !important;
+        }
+        .slick-prev {
+          left: 10px !important;
+          z-index: 10;
+        }
+        .slick-next {
+          right: 10px !important;
+          z-index: 10;
+        }
+      }
+      
+      @keyframes wave {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+  const preventVideoClick = (e) => {
+    e.stopPropagation();
+  };
   return /* @__PURE__ */ jsx(
     "div",
     {
       style: {
         width: "100%",
-        maxWidth: "100%",
         margin: "0 auto",
-        padding: isMobile ? "10px" : "40px 20px",
+        padding: isMobile ? "10px 0px" : "40px 0px",
         boxSizing: "border-box",
         position: "relative"
       },
@@ -411,31 +499,37 @@ function SimpleSlider() {
         "div",
         {
           style: {
-            padding: "0px",
-            // Add padding to create space between slides
+            padding: "0 5px",
             boxSizing: "border-box",
             position: "relative"
           },
           children: [
-            !loadingVideos[index] && /* @__PURE__ */ jsx(Skeleton, { animation: "wave", variant: "rectangular", width: "100%", height: "200" }),
-            /* @__PURE__ */ jsx("div", { style: { position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden" }, children: /* @__PURE__ */ jsx(
-              "iframe",
+            !loadingVideos[index] && /* @__PURE__ */ jsx(CustomSkeleton, {}),
+            /* @__PURE__ */ jsx(
+              "div",
               {
-                src: `${video.src}?mute=1&controls=0&autoplay=1&loop=1&modestbranding=1&rel=0&fs=0&iv_load_policy=3&playlist=${extractVideoId(video.src)}`,
-                title: `Video ${index + 1}`,
-                frameBorder: "0",
-                allowFullScreen: true,
-                onLoad: () => handleVideoLoad(index),
-                style: {
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: isMobile ? "100%" : "98%",
-                  height: "100%",
-                  border: "none"
-                }
+                style: { position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden" },
+                onClick: preventVideoClick,
+                children: /* @__PURE__ */ jsx(
+                  "iframe",
+                  {
+                    src: `${video.src}?mute=1&controls=0&autoplay=1&loop=1&modestbranding=1&rel=0&fs=0&iv_load_policy=3&playlist=${extractVideoId(video.src)}`,
+                    title: `Video ${index + 1}`,
+                    frameBorder: "0",
+                    allowFullScreen: true,
+                    onLoad: () => handleVideoLoad(index),
+                    style: {
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "98%",
+                      height: "100%",
+                      border: "none"
+                    }
+                  }
+                )
               }
-            ) })
+            )
           ]
         },
         index
@@ -466,7 +560,7 @@ const Footer = () => {
         height: "100%",
         marginTop: "2rem",
         width: isMobile ? "90%" : "80%",
-        paddingBottom: "3rem"
+        paddingBottom: "5rem"
       },
       variants: variants$1.section3,
       initial: "hidden",
@@ -668,18 +762,7 @@ const VideoSection = ({ bgColor: bgColor2, Video, isMobile }) => {
                   "Your browser does not support the video tag."
                 ]
               }
-            ) : /* @__PURE__ */ jsx(
-              Skeleton,
-              {
-                variant: "rectangular",
-                animation: "wave",
-                style: {
-                  width: "100%",
-                  height: isMobile ? "200px" : "300px",
-                  borderRadius: "1rem"
-                }
-              }
-            ),
+            ) : /* @__PURE__ */ jsx(CustomSkeleton, { height: 500 }),
             Video && /* @__PURE__ */ jsxs(
               motion.div,
               {
@@ -723,6 +806,11 @@ const VideoSection = ({ bgColor: bgColor2, Video, isMobile }) => {
       )
     }
   );
+};
+VideoSection.propTypes = {
+  bgColor: PropTypes.string.isRequired,
+  Video: PropTypes.string,
+  isMobile: PropTypes.bool.isRequired
 };
 const variants = {
   section1: {
@@ -931,8 +1019,8 @@ const ScrollTop = () => {
         gap: "10px",
         zIndex: 1e3,
         position: "fixed",
-        bottom: "30px",
-        right: "30px",
+        bottom: "20px",
+        right: "20px",
         background: navCol,
         width: "50px",
         height: "50px",

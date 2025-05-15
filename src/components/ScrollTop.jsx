@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaArrowUp } from "react-icons/fa6";
 import { navCol } from '../../utils/constant/Colors';
@@ -44,8 +44,8 @@ const ScrollTop = () => {
                         gap: '10px',
                         zIndex: 1000,
                         position: 'fixed',
-                        bottom: '30px',
-                        right: '30px',
+                        bottom: '20px',
+                        right: '20px',
                         background: navCol,
                         width: '50px',
                         height: '50px',

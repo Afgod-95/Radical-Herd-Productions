@@ -36,7 +36,7 @@ const Footer = () => {
                     height: '100%',
                     marginTop: "2rem",
                     width: isMobile ? "90%" : '80%',
-                    paddingBottom: "3rem",
+                    paddingBottom: "5rem",
                 }
                 }
                 variants={variants.section3}

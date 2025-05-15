@@ -81,7 +81,7 @@ export default function CustomDrawer({ open, setOpen }) {
                         className={`links ${activeSection === id ? 'active-link' : ''}`}
                         onClick={() => scrollToID(id)}
                     >
-                        <p style={{ fontFamily: 'Roboto' }}>{id.replace(/-/g, ' ').toUpperCase}</p>
+                        <p style={{ fontFamily: 'Roboto' }}>{id.replace(/-/g, ' ').toUpperCase()}</p>
                     </a>
                 ))}
             </div>
@@ -105,6 +105,6 @@ export default function CustomDrawer({ open, setOpen }) {
 }
 
 CustomDrawer.propTypes = {
-    open: PropTypes.bool.isRequired,
-    setOpen: PropTypes.func.isRequired
-};
+    open: PropTypes.boolean,
+    setOpen: PropTypes.boolean
+}
