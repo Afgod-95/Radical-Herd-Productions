@@ -4,14 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build:client": "vite build --outDir dist/client",
-  "build:server": "vite build --ssr src/entry-server.jsx --outDir dist/server",
-  "build": "npm run build:client && npm run build:server",
-  "start": "NODE_ENV=production node dist/server/entry-server.js",
-  "preview": "vite preview"
-},
-
+    "dev": "vite",
+    "start": "NODE_ENV=production node server.js",
+    "build:client": "vite build --outDir dist/client",
+    "build:server": "vite build --outDir dist/server --ssr src/entry-server.jsx",
+    "build": "npm run build:client && npm run build:server",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",

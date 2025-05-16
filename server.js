@@ -32,7 +32,7 @@ async function createServer() {
   let template;
 
   if (isProduction) {
-    const {render: ssrRender } = await import('.dist/server/entry-server.js');
+    const {render: ssrRender } = await import('./dist/server/entry-server.js');
     render = ssrRender;
     template = await readFileSync(path.resolve(__dirname, './dist/client/index.html'), 'utf-8');
     app.use('/', express.static(path.resolve(__dirname, './dist/client')));

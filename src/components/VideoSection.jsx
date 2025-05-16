@@ -69,11 +69,12 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
                         src={embedURL}
                         width="100%"
                         height={isMobile ? "300px" : "500px"}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="accelerometer; loop; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         style={{
                             border: 'none',
                             borderRadius: '1rem',
+                            pointerEvents: 'none'
                         }}
                     />
                 ) : (
