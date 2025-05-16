@@ -1,17 +1,23 @@
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
+import React__default, { useState, useEffect, useRef, Suspense } from "react";
 import { renderToString } from "react-dom/server";
-import { useState, useEffect, useRef, Suspense } from "react";
 import PropTypes from "prop-types";
 import { useMediaQuery } from "react-responsive";
 import { motion } from "framer-motion";
-import Box from "@mui/material/Box/index.js";
-import Drawer from "@mui/material/Drawer/index.js";
-import pkg, { Link, useLocation, Routes, Route } from "react-router-dom";
+import { B as Box, D as Drawer, T as Typography } from "./assets/vendor_mui-BhLrJi9B.js";
+import { Link, useLocation, Routes, Route } from "react-router-dom";
 import Slider from "react-slick";
 import { FaPhoneSquareAlt, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaLinkedin, FaArrowUp } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
-import { Typography } from "@mui/material";
+import "clsx";
+import "./assets/vendor-C0D6Eyxk.js";
+import "hoist-non-react-statics";
+import "@babel/runtime/helpers/extends";
+import "@babel/runtime/helpers/esm/extends";
+import "stylis";
+import "react-transition-group";
+import "react-dom";
 const Logo = "/assets/Radical_Logo-FDvDmsXj.png";
 const navCol = "#D72328";
 const bgColor = "#151516";
@@ -1270,14 +1276,15 @@ function App() {
     ] })
   ] }) });
 }
-function render(url) {
-  const { StaticRouter } = pkg;
-  console.log("Rendering page for URL:", url);
-  const appHtml = renderToString(
-    /* @__PURE__ */ jsx(StaticRouter, { location: url, children: /* @__PURE__ */ jsx(App, { url }) })
+function render(url, context) {
+  return renderToString(
+    /* @__PURE__ */ jsx(React__default.StrictMode, { children: /* @__PURE__ */ jsx(App, { url, serverContext: context }) })
   );
-  return appHtml;
+}
+function preloadData(url) {
+  return Promise.resolve({});
 }
 export {
+  preloadData,
   render
 };

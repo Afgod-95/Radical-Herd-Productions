@@ -39,7 +39,7 @@ async function createServer() {
     
   }
 
-  // ✅ Wildcard route for all other pages
+  // Wildcard route for all other pages
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
 
