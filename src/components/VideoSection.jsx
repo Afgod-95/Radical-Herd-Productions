@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { FaYoutube } from "react-icons/fa";
@@ -14,25 +14,26 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
         }
     };
 
-    useEffect(() => {
-        if (Video) {
-            const video = document.querySelector('video');
-            if (video) {
-                video.oncanplaythrough = () => console.log("Video loaded and playing");
-                video.onerror = () => console.error("Error loading or playing video");
-                video.onended = () => console.log("Video ended");
-                video.onpause = () => console.log("Video paused");
-                video.onplay = () => console.log("Video started playing");
-                video.onseeked = () => console.log("Video seeked");
-                video.ontimeupdate = () => console.log("Video time updated");
-                video.onvolumechange = () => console.log("Video volume changed");
-                video.onwaiting = () => console.log("Video waiting for data");
+    // Convert to YouTube embed link if necessary
+    const getEmbedUrl = (url) => {
+    if (!url) return null;
 
-                video.load();
-                video.play();
-            }
+    try {
+        const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/;
+        const match = url.match(youtubeRegex);
+        const videoId = match?.[1];
+        if (videoId) {
+            return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
         }
-    }, [Video]);
+    } catch (err) {
+        console.error("Invalid YouTube URL:", url, err);
+    }
+
+    return null;
+};
+
+
+    const embedURL = getEmbedUrl(Video);
 
     return (
         <motion.div
@@ -58,31 +59,25 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
                     justifyContent: 'center',
                     overflow: 'hidden',
                     position: 'relative',
-                    minHeight: isMobile ? '200px' : '300px', // Ensures skeleton has space
+                    minHeight: isMobile ? '200px' : '300px',
                 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                {Video ? (
-                    <video
+                {embedURL ? (
+                    <iframe
+                        src={embedURL}
                         width="100%"
-                        height="100%"
-                        autoPlay
-                        muted
-                        loop
-                        controls={false}
+                        height={isMobile ? "300px" : "500px"}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
                         style={{
-                            objectFit: "cover",
-                            width: '100%',
-                            height: isMobile ? '100%' : '500px',
-                            borderRadius: '1rem'
+                            border: 'none',
+                            borderRadius: '1rem',
                         }}
-                    >
-                        <source src={Video} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                    />
                 ) : (
-                   <CustomSkeleton height = {500} />
+                    <CustomSkeleton height={500} />
                 )}
 
                 {Video && (
@@ -133,4 +128,3 @@ VideoSection.propTypes = {
 };
 
 export default VideoSection;
-

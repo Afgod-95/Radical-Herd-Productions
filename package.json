@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "node server",
     "build:client": "vite build --outDir dist/client",
+    "build:server": "vite build --ssr src/entry-server.jsx --outDir dist/server",
     "build": "npm run build:client && npm run build:server",
-    "build:server": "vite build --outDir dist/server --ssr src/entry-server.jsx ",
-    "lint": "eslint .",
+    "start": "node server.js",
     "preview": "vite preview"
   },
   "dependencies": {

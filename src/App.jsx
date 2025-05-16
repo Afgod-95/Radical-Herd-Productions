@@ -7,7 +7,7 @@ import ScrollTop from "./components/ScrollTop";
 import NotFound from "./pages/NotFound";
 import { navCol } from "../utils/constant/Colors";
 import Logo from "../src/assets/Radical_Logo.png";
-import { motion } from "framer-motion"; // Ensure this is imported
+import { motion } from "framer-motion"; 
 import { Typography } from "@mui/material";
 import SmoothScroll from "../utils/SmoothScroll";
 

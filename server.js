@@ -1,11 +1,14 @@
-import fs from 'fs';
+import { readFileSync } from 'fs';
 import path from 'path';
 import express from 'express';
 import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
+import process from 'process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 async function createServer() {
   const app = express();
@@ -25,25 +28,22 @@ async function createServer() {
     res.set('Content-Type', 'application/json');
     res.json({ message: 'Hello World' });
   });
+  let render;
+  let template;
+
+  if (isProduction) {
+    const {render: ssrRender } = await import('.dist/server/entry-server.js');
+    render = ssrRender;
+    template = await readFileSync(path.resolve(__dirname, './dist/client/index.html'), 'utf-8');
+    app.use('/', express.static(path.resolve(__dirname, './dist/client')));
+    
+  }
 
   // ✅ Wildcard route for all other pages
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
 
     try {
-      let template = fs.readFileSync(
-        path.resolve(__dirname, 'index.html'),
-        'utf-8'
-      );
-
-      template = await vite.transformIndexHtml(url, template);
-
-      const { render } = await vite.ssrLoadModule('/src/entry-server.jsx');
-
-      if (!render) {
-        throw new Error('Render function not found in entry-server.jsx');
-      }
-
       const appHtml = await render(url);
 
       const html = template.replace(`<!--ssr-outlet-->`, appHtml);
@@ -56,7 +56,7 @@ async function createServer() {
     }
   });
 
-  const PORT = 3000;
+  const PORT = process.env.PORT | 3001;
   app.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`);
   });

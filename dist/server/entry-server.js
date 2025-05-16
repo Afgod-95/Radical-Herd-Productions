@@ -692,24 +692,21 @@ const VideoSection = ({ bgColor: bgColor2, Video, isMobile }) => {
       window.open(Video, "_blank");
     }
   };
-  useEffect(() => {
-    if (Video) {
-      const video = document.querySelector("video");
-      if (video) {
-        video.oncanplaythrough = () => console.log("Video loaded and playing");
-        video.onerror = () => console.error("Error loading or playing video");
-        video.onended = () => console.log("Video ended");
-        video.onpause = () => console.log("Video paused");
-        video.onplay = () => console.log("Video started playing");
-        video.onseeked = () => console.log("Video seeked");
-        video.ontimeupdate = () => console.log("Video time updated");
-        video.onvolumechange = () => console.log("Video volume changed");
-        video.onwaiting = () => console.log("Video waiting for data");
-        video.load();
-        video.play();
+  const getEmbedUrl = (url) => {
+    if (!url) return null;
+    try {
+      const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/;
+      const match = url.match(youtubeRegex);
+      const videoId = match == null ? void 0 : match[1];
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
       }
+    } catch (err) {
+      console.error("Invalid YouTube URL:", url, err);
     }
-  }, [Video]);
+    return null;
+  };
+  const embedURL = getEmbedUrl(Video);
   return /* @__PURE__ */ jsx(
     motion.div,
     {
@@ -737,30 +734,22 @@ const VideoSection = ({ bgColor: bgColor2, Video, isMobile }) => {
             overflow: "hidden",
             position: "relative",
             minHeight: isMobile ? "200px" : "300px"
-            // Ensures skeleton has space
           },
           onMouseEnter: () => setIsHovered(true),
           onMouseLeave: () => setIsHovered(false),
           children: [
-            Video ? /* @__PURE__ */ jsxs(
-              "video",
+            embedURL ? /* @__PURE__ */ jsx(
+              "iframe",
               {
+                src: embedURL,
                 width: "100%",
-                height: "100%",
-                autoPlay: true,
-                muted: true,
-                loop: true,
-                controls: false,
+                height: isMobile ? "300px" : "500px",
+                allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+                allowFullScreen: true,
                 style: {
-                  objectFit: "cover",
-                  width: "100%",
-                  height: isMobile ? "100%" : "500px",
+                  border: "none",
                   borderRadius: "1rem"
-                },
-                children: [
-                  /* @__PURE__ */ jsx("source", { src: Video, type: "video/mp4" }),
-                  "Your browser does not support the video tag."
-                ]
+                }
               }
             ) : /* @__PURE__ */ jsx(CustomSkeleton, { height: 500 }),
             Video && /* @__PURE__ */ jsxs(
@@ -909,7 +898,8 @@ const Home = () => {
           overflow: "hidden"
         },
         children: [
-          /* @__PURE__ */ jsxs(
+          /* @__PURE__ */ jsx(VideoSection, { Video: "https://youtu.be/11DYPkjjPHo", isMobile }),
+          /* @__PURE__ */ jsx(
             motion.div,
             {
               id: "portfolio",
@@ -925,20 +915,17 @@ const Home = () => {
               initial: "hidden",
               whileInView: "visible",
               viewport: { once: false, amount: 0.5 },
-              children: [
-                /* @__PURE__ */ jsx(VideoSection, { Video: "https://www.shutterstock.com/shutterstock/videos/3488356525/preview/stock-footage-medium-shot-of-young-black-team-of-colleagues-coworking-on-creative-project-in-green-office.webm", isMobile }),
-                /* @__PURE__ */ jsxs("div", { children: [
-                  /* @__PURE__ */ jsx("h1", { style: { textAlign: "center", color: subColor, fontFamily: "Roboto" }, children: "Portfolio" }),
-                  /* @__PURE__ */ jsx(SimpleSlider, {}),
-                  /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", padding: isMobile ? ".5rem" : "2rem", marginTop: isMobile ? 20 : 10 }, children: [
-                    /* @__PURE__ */ jsxs("h1", { style: { fontFamily: "Roboto", width: isMobile ? "100%" : "45%", textAlign: isMobile ? "left" : "", fontSize: isMobile ? "20px" : "", color: navCol, marginBottom: isMobile ? "10px" : "" }, children: [
-                      "Digital Advertising in Ghana ",
-                      /* @__PURE__ */ jsx("span", { style: { fontWeight: "normal" }, children: "(A fast evolving parts)" })
-                    ] }),
-                    /* @__PURE__ */ jsx("div", { style: { width: isMobile ? "100%" : "50%" }, children: /* @__PURE__ */ jsx("p", { style: { color: "#fff", lineHeight: "30px", fontFamily: "Roboto" }, children: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, expedita facilis! Rerum, mollitia similique, distinctio expedita repellat at quidem tenetur porro officiis provident cumque iste totam maxime deserunt asperiores voluptate." }) })
-                  ] })
+              children: /* @__PURE__ */ jsxs("div", { children: [
+                /* @__PURE__ */ jsx("h1", { style: { textAlign: "center", color: subColor, fontFamily: "Roboto" }, children: "Portfolio" }),
+                /* @__PURE__ */ jsx(SimpleSlider, {}),
+                /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", padding: isMobile ? ".5rem" : "2rem", marginTop: isMobile ? 20 : 10 }, children: [
+                  /* @__PURE__ */ jsxs("h1", { style: { fontFamily: "Roboto", width: isMobile ? "100%" : "45%", textAlign: isMobile ? "left" : "", fontSize: isMobile ? "20px" : "", color: navCol, marginBottom: isMobile ? "10px" : "" }, children: [
+                    "Digital Advertising in Ghana ",
+                    /* @__PURE__ */ jsx("span", { style: { fontWeight: "normal" }, children: "(A fast evolving parts)" })
+                  ] }),
+                  /* @__PURE__ */ jsx("div", { style: { width: isMobile ? "100%" : "50%" }, children: /* @__PURE__ */ jsx("p", { style: { color: "#fff", lineHeight: "30px", fontFamily: "Roboto" }, children: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, expedita facilis! Rerum, mollitia similique, distinctio expedita repellat at quidem tenetur porro officiis provident cumque iste totam maxime deserunt asperiores voluptate." }) })
                 ] })
-              ]
+              ] })
             }
           ),
           /* @__PURE__ */ jsx("div", { style: { width: "100%", backgroundColor: "#fff" }, children: /* @__PURE__ */ jsxs(

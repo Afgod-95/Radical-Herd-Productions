@@ -102,7 +102,7 @@ const Home = () => {
                     overflow: 'hidden',
                 }}
             >
-
+                 <VideoSection Video={'https://youtu.be/11DYPkjjPHo'} isMobile={isMobile} />
                 {/* Section 3 */}
                 <motion.div
                     id="portfolio"
@@ -121,7 +121,7 @@ const Home = () => {
                     viewport={{ once: false, amount: 0.5 }}
                 >
                     
-                    <VideoSection Video={'https://www.shutterstock.com/shutterstock/videos/3488356525/preview/stock-footage-medium-shot-of-young-black-team-of-colleagues-coworking-on-creative-project-in-green-office.webm'} isMobile={isMobile} />
+                   
                     
                     <div>
                         <h1 style={{ textAlign: 'center', color: subColor, fontFamily: "Roboto" }}>Portfolio</h1>
