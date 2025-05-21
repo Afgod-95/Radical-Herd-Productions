@@ -134,7 +134,9 @@ const Footer = () => {
                                 <Link to="https://www.instagram.com/radicalherdproductions/?hl=en" target='blank' className='info' style={{ fontWeight: 'bold' }}>
                                     <FaInstagram size={isMobile ? 24 : 30} />
                                 </Link>
-                                <Link className='info' style={{ fontWeight: 'bold' }}>
+                                <Link  to = 'https://www.linkedin.com/company/now-available-africa/'
+                                    target='blank' className='info' style={{ fontWeight: 'bold' }}
+                                >
                                     <FaLinkedin size={isMobile ? 24 : 30} />
                                 </Link>
                             </div>

@@ -7,6 +7,7 @@ import Footer from '../components/Footer.jsx';
 import { useMediaQuery } from 'react-responsive';
 //import Video from "../assets/video/radical-herd.mp4"
 import VideoSection from '../components/VideoSection.jsx';
+import { Link } from 'react-router-dom';
 
 
 const variants = {
@@ -34,13 +35,13 @@ const Home = () => {
 
     return (
         <div style={{ backgroundColor: navCol, }}>
-            <motion.div 
+            <motion.div
                 id='home'
                 style={{
                     width: isMobile ? "100%" : '80%',
                     marginLeft: "auto",
                     marginRight: "auto",
-                    paddingTop: isSmallMob ? "30%" : '15%',
+                    paddingTop: isSmallMob ? "20%" : '15%',
                     display: 'flex',
                     alignItems: "center",
                     justifyContent: 'center',
@@ -59,7 +60,7 @@ const Home = () => {
                         textTransform: 'uppercase',
                         textAlign: "center",
                     }}
-                   
+
                 >
                     Lights, Camera, Sound{' '}
                     <span className="big-txt" style={{ fontSize: isMobile ? "30px" : '50px' }}>and</span>
@@ -85,7 +86,7 @@ const Home = () => {
                         textAlign: "center",
                     }}
                 >
-                    a whole action
+                    a whole lot of action
                 </motion.h1>
             </motion.div>
 
@@ -102,7 +103,7 @@ const Home = () => {
                     overflow: 'hidden',
                 }}
             >
-                 <VideoSection Video={'https://youtu.be/11DYPkjjPHo'} isMobile={isMobile} />
+                <VideoSection Video={'https://youtu.be/11DYPkjjPHo'} isMobile={isMobile} />
                 {/* Section 3 */}
                 <motion.div
                     id="portfolio"
@@ -117,29 +118,37 @@ const Home = () => {
                     variants={variants.section3}
                     initial="hidden"
                     whileInView="visible"
-                    
+
                     viewport={{ once: false, amount: 0.5 }}
                 >
-                    
-                   
-                    
+
+
+
                     <div>
                         <h1 style={{ textAlign: 'center', color: subColor, fontFamily: "Roboto" }}>Portfolio</h1>
-                    
-                    <Carousel />
 
-                    <div style={{ display: 'flex', flexDirection: isMobile ? "column" : "row", justifyContent: 'space-between', padding: isMobile ? ".5rem" : "2rem", marginTop: isMobile ? 20 : 10 }}>
-                        <h1 style={{ fontFamily: "Roboto", width: isMobile ? "100%" : '45%', textAlign: isMobile ? "left" : "", fontSize: isMobile ? "20px" : "", color: navCol, marginBottom: isMobile ? "10px" : "" }}>
-                            Digital Advertising in Ghana <span style={{ fontWeight: 'normal' }}>(A fast evolving parts)</span>
-                        </h1>
-                        <div style={{ width: isMobile ? "100%" : '50%' }}>
-                            <p style={{ color: '#fff', lineHeight: "30px", fontFamily: "Roboto" }}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, expedita facilis! Rerum, mollitia similique, distinctio expedita repellat at quidem tenetur porro officiis provident cumque iste totam maxime deserunt asperiores voluptate.
-                            </p>
+                        <Carousel />
+
+                        <div style={{ display: 'flex', flexDirection: isMobile ? "column" : "row", justifyContent: 'space-between', padding: isMobile ? ".5rem" : "2rem", marginTop: isMobile ? 20 : 10 }}>
+                            <h1 style={{ fontFamily: "Roboto", width: isMobile ? "100%" : '45%', textAlign: isMobile ? "left" : "", fontSize: isMobile ? "20px" : "", color: navCol, marginBottom: isMobile ? "10px" : "" }}>
+                                Digital Advertising in Ghana <span style={{ fontWeight: 'normal' }}>(A fast evolving parts)</span>
+                            </h1>
+                            <div style={{ width: isMobile ? "100%" : '50%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <p style={{ color: '#fff', lineHeight: "30px", textAlign: '-webkit-match-parent', fontFamily: "Roboto" }}>
+                                    Last week, Now Available Africa and Radical Herd Productions launched our much-awaited documentary - DIGITAL ADVERTISING IN GHANA: A story of fast-evolving parts, at the Black Stars International Film Festival.
+                                </p>
+
+                                <p style={{ color: '#fff', lineHeight: "30px", fontFamily: "Roboto" }}>
+                                    This documentary charts the evolution of digital advertising in Ghana. Working on the documentary reminded us of how far we have come and how far we need to go.
+                                </p>
+                                <Link to = 'https://www.linkedin.com/pulse/digital-advertising-ghana-story-fast-evolving-parts-gu7nf?utm_source=share&utm_medium=member_ios&utm_campaign=share_via' target = '_blank' className='read_more'>
+                                    <p>Read More</p>
+                                </Link>
+
+                            </div>
                         </div>
                     </div>
-                    </div>
-                    
+
                 </motion.div>
 
 
@@ -171,7 +180,7 @@ const Home = () => {
                             },
                         }}
                             style={{ textAlign: 'center', color: subColor, fontFamily: "Roboto" }}>Our Cast</motion.h1>
-                        <img src={Client_Logos} alt="client-logos" />
+                            <img src={Client_Logos} alt="client-logos" style = {{ marginBottom: '1rem'}} />
                     </motion.div>
                 </div>
                 <Footer />

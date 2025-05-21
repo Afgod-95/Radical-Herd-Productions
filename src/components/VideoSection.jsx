@@ -5,7 +5,7 @@ import { FaYoutube } from "react-icons/fa";
 import { navCol } from '../../utils/constant/Colors';
 import CustomSkeleton from './CustomSkeleton';
 
-const VideoSection = ({ bgColor, Video, isMobile }) => {
+const VideoSection = ({ Video, isMobile }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     const handleVideoClick = () => {
@@ -39,7 +39,6 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
         <motion.div
             style={{
                 width: '100%',
-                backgroundColor: bgColor,
                 display: 'flex',
                 flexDirection: "column",
                 alignItems: "center",
@@ -68,12 +67,12 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
                     <iframe
                         src={embedURL}
                         width="100%"
-                        height={isMobile ? "300px" : "500px"}
-                        allow="accelerometer; loop; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        height={isMobile ? "300px" : "600px"}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; loop"
                         allowFullScreen
                         style={{
                             border: 'none',
-                            borderRadius: '1rem',
+                            
                             pointerEvents: 'none'
                         }}
                     />
@@ -123,7 +122,6 @@ const VideoSection = ({ bgColor, Video, isMobile }) => {
 };
 
 VideoSection.propTypes = {
-    bgColor: PropTypes.string.isRequired,
     Video: PropTypes.string,
     isMobile: PropTypes.bool.isRequired,
 };

@@ -1,10 +1,29 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Logo from '../assets/Radical_Logo.png';
+import Pattern from '../assets/pattern.png'
 import { navCol } from '../../utils/constant/Colors';
 import { useMediaQuery } from 'react-responsive';
 import { motion } from 'framer-motion';
 import CustomDrawer from '../components/CustomDrawer';
+
+
+
+const BackDropImage = () => {
+  return (
+    <img src={Pattern}
+      style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        top: '0%',
+        right: '0%',
+        opacity: 0.05,
+        zIndex: '-1'
+      }}
+    />
+  )
+}
 
 const NavBar = ({ children }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -116,67 +135,77 @@ const NavBar = ({ children }) => {
 
           {/* Nav Links */}
           {isMobile ? (
-            <div
-              onClick={toggleDrawer}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignContent: 'center',
-                gap: '.5rem',
-                cursor: 'pointer',
-              }}
-            >
-              <motion.div
+            <>
+              <div
+                onClick={toggleDrawer}
                 style={{
-                  width: '30px',
-                  height: '3px',
-                  background: '#fff',
-                  borderRadius: '2px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                  gap: '.5rem',
+                  cursor: 'pointer',
                 }}
-                animate={{
-                  rotate: isToggled ? 45 : 0,
-                  y: isToggled ? 5 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-              />
-              <motion.div
-                style={{
-                  width: '30px',
-                  height: '3px',
-                  background: '#fff',
-                  borderRadius: '2px',
-                }}
-                animate={{
-                  rotate: isToggled ? -45 : 0,
-                  y: isToggled ? -5 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-              />
-            </div>
+              >
+                <motion.div
+                  style={{
+                    width: '30px',
+                    height: '3px',
+                    background: '#fff',
+                    borderRadius: '2px',
+                  }}
+                  animate={{
+                    rotate: isToggled ? 45 : 0,
+                    y: isToggled ? 5 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.div
+                  style={{
+                    width: '30px',
+                    height: '3px',
+                    background: '#fff',
+                    borderRadius: '2px',
+                  }}
+                  animate={{
+                    rotate: isToggled ? -45 : 0,
+                    y: isToggled ? -5 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+
+                <BackDropImage />
+              </div>
+
+            </>
+
           ) : (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'right',
-                gap: isTabletOrLaptop ? '1.8rem' : '3rem',
-                width: isTabletOrLaptop ? '80%' : '50%',
-                alignItems: 'center',
-                color: 'white',
-                textTransform: 'uppercase',
-              }}
-            >
-              {['home', 'portfolio', 'about', 'request-a-quote'].map((id) => (
-                <a
-                  key={id}
-                  href={`#${id}`}
-                  className={`links ${activeSection === id ? 'active-link' : ''}`}
-                  onClick={() => scrollToID(id)}
-                >
-                  <p style={{ fontFamily: 'Roboto' }}>{id.replace(/-/g, ' ')}</p>
-                </a>
-              ))}
-            </div>
+            <>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'right',
+                  gap: isTabletOrLaptop ? '1.8rem' : '3rem',
+                  width: isTabletOrLaptop ? '80%' : '50%',
+                  alignItems: 'center',
+                  color: 'white',
+                  textTransform: 'uppercase',
+                }}
+              >
+                {['home', 'portfolio', 'about', 'request-a-quote'].map((id) => (
+                  <a
+                    key={id}
+                    href={`#${id}`}
+                    className={`links ${activeSection === id ? 'active-link' : ''}`}
+                    onClick={() => scrollToID(id)}
+                  >
+                    <p style={{ fontFamily: 'Roboto' }}>{id.replace(/-/g, ' ')}</p>
+                  </a>
+                ))}
+              </div>
+              <BackDropImage />
+            </>
+
           )}
         </div>
 
