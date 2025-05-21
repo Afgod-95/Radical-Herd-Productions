@@ -19,6 +19,7 @@ import "stylis";
 import "react-transition-group";
 import "react-dom";
 const Logo = "/assets/Radical_Logo-FDvDmsXj.png";
+const Pattern = "/assets/pattern-GdPzRLv0.png";
 const navCol = "#D72328";
 const bgColor = "#151516";
 const txtColor = "#FFFFFF";
@@ -114,6 +115,23 @@ function CustomDrawer({ open, setOpen }) {
 CustomDrawer.propTypes = {
   open: PropTypes.boolean,
   setOpen: PropTypes.boolean
+};
+const BackDropImage = () => {
+  return /* @__PURE__ */ jsx(
+    "img",
+    {
+      src: Pattern,
+      style: {
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        top: "0%",
+        right: "0%",
+        opacity: 0.05,
+        zIndex: "-1"
+      }
+    }
+  );
 };
 const NavBar = ({ children }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
@@ -221,7 +239,7 @@ const NavBar = ({ children }) => {
                     )
                   }
                 ),
-                isMobile ? /* @__PURE__ */ jsxs(
+                isMobile ? /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsxs(
                   "div",
                   {
                     onClick: toggleDrawer,
@@ -265,33 +283,37 @@ const NavBar = ({ children }) => {
                           },
                           transition: { duration: 0.3 }
                         }
-                      )
+                      ),
+                      /* @__PURE__ */ jsx(BackDropImage, {})
                     ]
                   }
-                ) : /* @__PURE__ */ jsx(
-                  "div",
-                  {
-                    style: {
-                      display: "flex",
-                      justifyContent: "right",
-                      gap: isTabletOrLaptop ? "1.8rem" : "3rem",
-                      width: isTabletOrLaptop ? "80%" : "50%",
-                      alignItems: "center",
-                      color: "white",
-                      textTransform: "uppercase"
-                    },
-                    children: ["home", "portfolio", "about", "request-a-quote"].map((id) => /* @__PURE__ */ jsx(
-                      "a",
-                      {
-                        href: `#${id}`,
-                        className: `links ${activeSection === id ? "active-link" : ""}`,
-                        onClick: () => scrollToID(id),
-                        children: /* @__PURE__ */ jsx("p", { style: { fontFamily: "Roboto" }, children: id.replace(/-/g, " ") })
+                ) }) : /* @__PURE__ */ jsxs(Fragment, { children: [
+                  /* @__PURE__ */ jsx(
+                    "div",
+                    {
+                      style: {
+                        display: "flex",
+                        justifyContent: "right",
+                        gap: isTabletOrLaptop ? "1.8rem" : "3rem",
+                        width: isTabletOrLaptop ? "80%" : "50%",
+                        alignItems: "center",
+                        color: "white",
+                        textTransform: "uppercase"
                       },
-                      id
-                    ))
-                  }
-                )
+                      children: ["home", "portfolio", "about", "request-a-quote"].map((id) => /* @__PURE__ */ jsx(
+                        "a",
+                        {
+                          href: `#${id}`,
+                          className: `links ${activeSection === id ? "active-link" : ""}`,
+                          onClick: () => scrollToID(id),
+                          children: /* @__PURE__ */ jsx("p", { style: { fontFamily: "Roboto" }, children: id.replace(/-/g, " ") })
+                        },
+                        id
+                      ))
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(BackDropImage, {})
+                ] })
               ]
             }
           ),
@@ -543,7 +565,7 @@ function SimpleSlider() {
     }
   );
 }
-const Client_Logos = "/assets/client_logos-CdG3eVPV.png";
+const Client_Logos = "/assets/client_logos-XWUTPngN.png";
 const variants$1 = {
   section3: {
     hidden: { opacity: 0, y: 50 },
@@ -675,7 +697,16 @@ const Footer = () => {
                   /* @__PURE__ */ jsx("h3", { style: { color: "#fff", marginBottom: ".5rem", fontSize: isMobile ? "15px" : "", fontFamily: "Roboto" }, children: "Follow Radical Herd " }),
                   /* @__PURE__ */ jsxs("div", { style: { display: "flex", gap: ".5rem", alignItems: "center" }, children: [
                     /* @__PURE__ */ jsx(Link, { to: "https://www.instagram.com/radicalherdproductions/?hl=en", target: "blank", className: "info", style: { fontWeight: "bold" }, children: /* @__PURE__ */ jsx(FaInstagram, { size: isMobile ? 24 : 30 }) }),
-                    /* @__PURE__ */ jsx(Link, { className: "info", style: { fontWeight: "bold" }, children: /* @__PURE__ */ jsx(FaLinkedin, { size: isMobile ? 24 : 30 }) })
+                    /* @__PURE__ */ jsx(
+                      Link,
+                      {
+                        to: "https://www.linkedin.com/company/now-available-africa/",
+                        target: "blank",
+                        className: "info",
+                        style: { fontWeight: "bold" },
+                        children: /* @__PURE__ */ jsx(FaLinkedin, { size: isMobile ? 24 : 30 })
+                      }
+                    )
                   ] })
                 ] })
               ]
@@ -691,7 +722,7 @@ const Footer = () => {
     }
   ) });
 };
-const VideoSection = ({ bgColor: bgColor2, Video, isMobile }) => {
+const VideoSection = ({ Video, isMobile }) => {
   const [isHovered, setIsHovered] = useState(false);
   const handleVideoClick = () => {
     if (Video) {
@@ -718,7 +749,6 @@ const VideoSection = ({ bgColor: bgColor2, Video, isMobile }) => {
     {
       style: {
         width: "100%",
-        backgroundColor: bgColor2,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -749,12 +779,12 @@ const VideoSection = ({ bgColor: bgColor2, Video, isMobile }) => {
               {
                 src: embedURL,
                 width: "100%",
-                height: isMobile ? "300px" : "500px",
-                allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+                height: isMobile ? "300px" : "600px",
+                allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; loop",
                 allowFullScreen: true,
                 style: {
                   border: "none",
-                  borderRadius: "1rem"
+                  pointerEvents: "none"
                 }
               }
             ) : /* @__PURE__ */ jsx(CustomSkeleton, { height: 500 }),
@@ -803,7 +833,6 @@ const VideoSection = ({ bgColor: bgColor2, Video, isMobile }) => {
   );
 };
 VideoSection.propTypes = {
-  bgColor: PropTypes.string.isRequired,
   Video: PropTypes.string,
   isMobile: PropTypes.bool.isRequired
 };
@@ -834,7 +863,7 @@ const Home = () => {
           width: isMobile ? "100%" : "80%",
           marginLeft: "auto",
           marginRight: "auto",
-          paddingTop: isSmallMob ? "30%" : "15%",
+          paddingTop: isSmallMob ? "20%" : "15%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -884,7 +913,7 @@ const Home = () => {
                 textTransform: "uppercase",
                 textAlign: "center"
               },
-              children: "a whole action"
+              children: "a whole lot of action"
             }
           )
         ]
@@ -929,7 +958,11 @@ const Home = () => {
                     "Digital Advertising in Ghana ",
                     /* @__PURE__ */ jsx("span", { style: { fontWeight: "normal" }, children: "(A fast evolving parts)" })
                   ] }),
-                  /* @__PURE__ */ jsx("div", { style: { width: isMobile ? "100%" : "50%" }, children: /* @__PURE__ */ jsx("p", { style: { color: "#fff", lineHeight: "30px", fontFamily: "Roboto" }, children: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, expedita facilis! Rerum, mollitia similique, distinctio expedita repellat at quidem tenetur porro officiis provident cumque iste totam maxime deserunt asperiores voluptate." }) })
+                  /* @__PURE__ */ jsxs("div", { style: { width: isMobile ? "100%" : "50%", display: "flex", flexDirection: "column", gap: "1rem" }, children: [
+                    /* @__PURE__ */ jsx("p", { style: { color: "#fff", lineHeight: "30px", textAlign: "-webkit-match-parent", fontFamily: "Roboto" }, children: "Last week, Now Available Africa and Radical Herd Productions launched our much-awaited documentary - DIGITAL ADVERTISING IN GHANA: A story of fast-evolving parts, at the Black Stars International Film Festival." }),
+                    /* @__PURE__ */ jsx("p", { style: { color: "#fff", lineHeight: "30px", fontFamily: "Roboto" }, children: "This documentary charts the evolution of digital advertising in Ghana. Working on the documentary reminded us of how far we have come and how far we need to go." }),
+                    /* @__PURE__ */ jsx(Link, { to: "https://www.linkedin.com/pulse/digital-advertising-ghana-story-fast-evolving-parts-gu7nf?utm_source=share&utm_medium=member_ios&utm_campaign=share_via", target: "_blank", className: "read_more", children: /* @__PURE__ */ jsx("p", { children: "Read More" }) })
+                  ] })
                 ] })
               ] })
             }
@@ -967,7 +1000,7 @@ const Home = () => {
                     children: "Our Cast"
                   }
                 ),
-                /* @__PURE__ */ jsx("img", { src: Client_Logos, alt: "client-logos" })
+                /* @__PURE__ */ jsx("img", { src: Client_Logos, alt: "client-logos", style: { marginBottom: "1rem" } })
               ]
             }
           ) }),
