@@ -736,7 +736,7 @@ const VideoSection = ({ Video, isMobile }) => {
       const match = url.match(youtubeRegex);
       const videoId = match == null ? void 0 : match[1];
       if (videoId) {
-        return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}`;
       }
     } catch (err) {
       console.error("Invalid YouTube URL:", url, err);
@@ -764,8 +764,6 @@ const VideoSection = ({ Video, isMobile }) => {
             display: "flex",
             flexDirection: "column",
             gap: "2rem",
-            borderBottomLeftRadius: isMobile ? "" : "1rem",
-            borderBottomRightRadius: isMobile ? "" : "1rem",
             justifyContent: "center",
             overflow: "hidden",
             position: "relative",
@@ -780,7 +778,7 @@ const VideoSection = ({ Video, isMobile }) => {
                 src: embedURL,
                 width: "100%",
                 height: isMobile ? "300px" : "600px",
-                allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; loop",
+                allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen",
                 allowFullScreen: true,
                 style: {
                   border: "none",
@@ -808,7 +806,6 @@ const VideoSection = ({ Video, isMobile }) => {
                   justifyContent: "center",
                   alignItems: "center",
                   gap: ".5rem",
-                  borderRadius: "5px",
                   zIndex: 10,
                   height: "100%",
                   width: "100%",
